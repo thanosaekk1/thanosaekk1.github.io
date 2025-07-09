@@ -70,8 +70,8 @@ input[type="range"] {
     position: relative;
 }
 #map {
+    width: 900px;
     height: 720px;
-    width: 50%;
     float: right;
 }
 
