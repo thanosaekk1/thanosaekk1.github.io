@@ -1,0 +1,99 @@
+body {
+    background-color:cadetblue;
+    position: relative;
+}
+header {
+    padding: 5px;
+    background-color:darkolivegreen;
+    text-align: center;
+}
+h2 {
+    font-family: Helvetica;
+}
+h1 {
+    font-family: Helvetica;
+}
+p {
+    font-family: Helvetica;
+}
+#score_num {
+    font-family: Helvetica;
+    font-size: 30px;
+    text-align: center;
+}
+
+.audio_player {
+    position: relative;
+    float: left;
+}
+#waveform {
+    padding: 10px;
+    float: left;
+    z-index: 0;
+}
+#result_overlay {
+    width: 900px;
+    height: 700px;
+    padding: 10px;
+    background-color: rgba(162, 197, 100, 0.75);
+    position: absolute;
+    z-index: 100;
+}
+#revealed_city_name {
+    position: absolute;
+}
+input[type="range"] {
+  /*remove default*/
+  -webkit-appearance: none;
+  appearance: none;
+  /*own custom*/
+  width: 40%;
+  cursor: pointer;
+  height: 15px;
+  /*background: #ccc;*/
+  border-radius: 15px;
+}
+#soundwave {
+    position: relative;
+    bottom: 0px;
+}
+#play_button {
+    position: relative;
+    top: 10px;
+}
+#volume-slider {
+    position: relative;
+    top: 10px;
+}
+
+.map_container {
+    position: relative;
+}
+#map {
+    height: 720px;
+    width: 50%;
+    float: right;
+}
+
+.button_style {
+    background-color: darkolivegreen;
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.button_style:hover {
+    background-color: rgb(55, 70, 30);
+}
+#new_game_button {
+    float: right;
+}
+#next_round_button {
+    float: right;
+}
+#guess_button {
+    float: right;
+}
