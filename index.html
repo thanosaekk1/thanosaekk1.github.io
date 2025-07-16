@@ -2,7 +2,7 @@
 
 <html>
 <head>
-<title>EchoLocate</title>
+<title>EchoLocate: Find Yourself in the World</title>
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--check if it has an effect-->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -11,29 +11,37 @@
 </head>
 <body>
 
-<header><h2>EchoLocate</h2></header>
+<header>
+    <p id="game_title"><b>EchoLocate</b></p>
+    <p id="game_desc">In this game, you are given five 30-second clips from cities around the world. Your task is to guess where the sound is from as best you can, and earn up to 1000 points every round depending on how close your guess was.</p>
+    <p id="highscore">Weekly Highscore: 0</p>
+</header>
 
 <div class="game_info">
-    <div id="score_num">Score: 0</div>
+    <div id="score_num">Score: 0 — Round: 0/5</div>
 </div>
 
 <div class="audio_player">
-    <div id="waveform" style="width: 900px; height: 700px;"></div>
+    <div id="waveform" style="width: 700px; height: 700px;"></div>
     <div id="result_overlay">
         <h2 id="revealed_city_name">City Name</h2>
         <br><br>
         <h3 id="round_score">Score Gained</h3>
     </div>
-    <br>
-    <input id="play_button" type="image" src="assets/play_sound.png"></input>
-    <input type="range" id="volume-slider">
+    <div id="audio_control">
+        <input id="play_button" type="image" src="assets/play_sound.png"></input>
+        <image id="volume_icon" src="assets/volume_icon.png"></image>
+        <input type="range" class="slider" id="volume-slider"></input>
+    </div>
 </div>
 
 <div class="map_container">
     <div id="map"></div>
-    <button id="new_game_button" class="button_style" onclick="newGame()">New Game</button>
-    <button id="next_round_button" class="button_style" onclick="nextRoundButton()">Next Round</button>
-    <button id="guess_button" class="button_style" onclick="confirmGuess()">Confirm Guess</button>
+    <div id="map_buttons">
+        <button id="guess_button" class="button_style" onclick="confirmGuess()">Confirm Guess</button>
+        <button id="next_round_button" class="button_style" onclick="nextRoundButton()">Next Round</button>
+        <button id="new_game_button" class="button_style" onclick="newGame()">New Game</button>
+    </div>
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"

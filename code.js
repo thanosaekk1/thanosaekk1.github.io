@@ -6,7 +6,18 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 //LEAFLET END
 
-const city_num = 29;
+//WAVESURFER
+const soundwave = WaveSurfer.create({
+  container: '#waveform',
+  waveColor: '#464646ff',
+  progressColor: '#2b2b2bff',
+  height: 700,
+  width: 700,
+  barWidth: 2,
+  barGap: 1,
+  barRadius: 2
+})
+//WAVESURFER END
 
 const cities = [
     {
@@ -42,11 +53,27 @@ const cities = [
         variants: 1
     },
     {
+        city_name: "Bengaluru",
+        X: 77.592,
+        Y: 12.979,
+        full_name: "Bengaluru",
+        country: "India",
+        variants: 1
+    },
+    {
         city_name: "Cairo",
         X: 31.236,
         Y: 30.044,
         full_name: "Cairo",
         country: "Egypt",
+        variants: 1
+    },
+    {
+        city_name: "Cap_Haitien",
+        X: -72.200,
+        Y: 19.760,
+        full_name: "Cap-Haïtien",
+        country: "Haiti",
         variants: 1
     },
     {
@@ -66,11 +93,35 @@ const cities = [
         variants: 1
     },
     {
+        city_name: "Geneva",
+        X: 6.147,
+        Y: 46.202,
+        full_name: "Geneva",
+        country: "Switzerland",
+        variants: 1
+    },
+    {
+        city_name: "Havana",
+        X: -82.359,
+        Y: 23.137,
+        full_name: "Havana",
+        country: "Cuba",
+        variants: 1
+    },
+    {
         city_name: "Istanbul",
         X: 28.955,
         Y: 41.014,
         full_name: "Istanbul",
         country: "Turkey",
+        variants: 1
+    },
+    {
+        city_name: "Kinshasa",
+        X: 15.312,
+        Y: -4.322,
+        full_name: "Kinshasa",
+        country: "DR Congo",
         variants: 1
     },
     {
@@ -114,6 +165,14 @@ const cities = [
         variants: 1
     },
     {
+        city_name: "Munich",
+        X: 11.575,
+        Y: 48.137,
+        full_name: "Munich",
+        country: "Germany",
+        variants: 1
+    },
+    {
         city_name: "New_Orleans",
         X: -90.078,
         Y: 29.976,
@@ -143,6 +202,22 @@ const cities = [
         Y: 11.569,
         full_name: "Phnom Penh",
         country: "Cambodia",
+        variants: 1
+    },
+    {
+        city_name: "Rio_de_Janeiro",
+        X: -43.206,
+        Y: -22.911,
+        full_name: "Rio de Janeiro",
+        country: "Brazil",
+        variants: 1
+    },
+    {
+        city_name: "Riyadh",
+        X: 46.717,
+        Y: 24.633,
+        full_name: "Riyadh",
+        country: "Saudi Arabia",
         variants: 1
     },
     {
@@ -194,6 +269,14 @@ const cities = [
         variants: 1
     },
     {
+        city_name: "Taipei",
+        X: 121.562,
+        Y: 25.037,
+        full_name: "Taipei",
+        country: "Taiwan",
+        variants: 1
+    },
+    {
         city_name: "Tangier",
         X: -5.804,
         Y: 35.777,
@@ -218,6 +301,14 @@ const cities = [
         variants: 1
     },
     {
+        city_name: "Ulaanbaatar",
+        X: 106.915,
+        Y: 47.922,
+        full_name: "Ulaanbaatar",
+        country: "Mongolia",
+        variants: 1
+    },
+    {
         city_name: "Venice",
         X: 12.336,
         Y: 45.437,
@@ -234,6 +325,14 @@ const cities = [
         variants: 1
     },
     {
+        city_name: "Warsaw",
+        X: 21.011,
+        Y: 52.230,
+        full_name: "Warsaw",
+        country: "Poland",
+        variants: 1
+    },
+    {
         city_name: "Yerevan",
         X: 44.514,
         Y: 40.181,
@@ -243,26 +342,19 @@ const cities = [
     }
 ];
 
-//soundwave initialization
-const soundwave = WaveSurfer.create({
-  container: '#waveform',
-  waveColor: '#4F4A85',
-  progressColor: '#383351',
-  height: 700,
-  barWidth: 2,
-  barGap: 1,
-  barRadius: 2
-})
+const city_num = cities.length;
 
 const playButton = document.querySelector('#play_button');
 
 let round = 0;
-let score = 0;
+let score = 0; //total score
 let round_score = 0;
 
 let roll = 0;
 let made_guess = false;
-let guessed = "None";
+let guessed = 0; //index of the city selected
+
+let save_sound = false; //when to keep the previous sound or roll a new one
 
 //map assets
 var marker = [city_num];
@@ -271,25 +363,25 @@ var line = [5];
 var default_icon = L.icon(
     {
         iconUrl: 'assets/city_default.png',
-        iconSize: [9, 9]
+        iconSize: [11, 11]
     }
 );
 var selected_icon = L.icon(
     {
         iconUrl: 'assets/city_selected.png',
-        iconSize: [9, 9]
+        iconSize: [11, 11]
     }
 );
 var correct_icon = L.icon(
     {
         iconUrl: 'assets/city_correct.png',
-        iconSize: [9, 9]
+        iconSize: [11, 11]
     }
 );
 var wrong_icon = L.icon(
     {
         iconUrl: 'assets/city_wrong.png',
-        iconSize: [9, 9]
+        iconSize: [11, 11]
     }
 );
 
@@ -359,6 +451,15 @@ function confirmGuess() {
     document.getElementById("revealed_city_name").innerHTML = cities[roll].full_name + ", " + cities[roll].country;
     document.getElementById("round_score").innerHTML = round_score + " points earned";
 
+    //save cookies for the round//create cookie
+    document.cookie = "score=" + score + "; path=/";
+    document.cookie = "round=" + round + "; path=/";
+    document.cookie = "roll=" + roll + "; path=/";
+
+    document.cookie = "line" + (round-1) + "origin" + "=" + guessed;
+    document.cookie = "line" + (round-1) + "dest" + "=" + roll;
+    document.cookie = "line" + (round-1) + "tooltip" + "=" + polyline_tooltip;
+
     guessed = -1;
     made_guess = true;
 
@@ -387,16 +488,29 @@ function nextRoundButton() {
     if (made_guess==false) {
         alert("No guess made yet!");
         return 0;
-    } else nextRound();
+    } else {
+        line.forEach((Data, i) => {
+            line[i].setStyle({color: '#ffa0a0'}); //here to not cause bug when refreshing
+        });
+        nextRound();
+    }
 }
 
 function nextRound() {
-    if (round>4 && score == 5000) {
-        alert("Game over! You have earned all 5000 possible points you could!");
-        return 0;
-    }
-    else if (round>4) {
-        alert("Game over! You earned " + score + " points out of possible 5000!");
+    if (round>4) { //game over
+        if (score == 5000) {
+            alert("Game over! You have earned all 5000 possible points you could!");
+        }
+        else {
+            alert("Game over! You earned " + score + " points out of possible 5000!");
+        }
+        //update highscore
+        if (score>parseFloat(getCookieValue("highscore"))) {
+            const exp_date = new Date();
+            exp_date.setTime(exp_date.getTime() + (7*24*60*60*1000));
+            document.cookie = "highscore=" + score + "; expires=" + exp_date.toUTCString() + "; path=/";
+            document.getElementById("highscore").innerHTML = "Weekly Highscore: " + score;
+        }
         return 0;
     }
     
@@ -408,41 +522,69 @@ function nextRound() {
     cities.forEach((Data, i) => {
         marker[i].setIcon(default_icon);
     });
-    for (i=0; i<round-1; i++) {
-        line[i].setStyle({color: '#ffa0a0'});
-    }
+    
+    if (save_sound == false) {
+        roll = Math.floor(Math.random()*city_num); //only roll anew in case of new round or new game, not refresh
 
-    roll = Math.floor(Math.random()*city_num);
+        //DOESN'T WORK
+        //insurance against getting the same city twice in a game
+        /*let re_roll = false;
+        for (let i=0; i<round-1; i++) {
+            console.log(cities[parseFloat(getCookieValue("line" + i + "dest"))].city_name);
+            if (parseFloat(getCookieValue("line" + i + "dest"))==roll) re_roll = true;
+        }
+
+        while (re_roll == true) {
+            roll = Math.floor(Math.random()*city_num);
+            console.log(cities[roll].city_name);
+            re_roll = false;
+            for (let i=0; i<round-1; i++)
+                if (parseFloat(getCookieValue("line" + i + "dest"))==roll) re_roll = true;
+        }*/
+    }
+    save_sound = false;
 
     const audio_name = "sounds/" + cities[roll].city_name + ".mp3";
     soundwave.load(audio_name);
     soundwave.setTime(0);
+    soundwave.setVolume(0.5);
     playButton.src = "assets/play_sound.png";
 
     correct_X = cities[roll].X;
     correct_Y = cities[roll].Y;
 
-    //create cookie
-    document.cookie = "score=" + score + "; path=/";
-    document.cookie = "round=" + round + "; path=/";
-    document.cookie = "roll=" + roll + "; path=/";
-
     made_guess = false;
 }
 
-function startGame() { //activated from loading the window
-    //let save_fields = document.cookie.split(';');
-    //let score_str = save_fields[0].split('=');
-    //let round_str = save_fields[1].split('=');
-    //let roll_str = save_fields[2].split('=');
-
-    //score = parseFloat(score_str[1]);
-    //round = parseFloat(round_str[1]); //causes issues
-    //roll = parseFloat(roll_str[1]);
-    score = 0;
-    round = 0;
+function loadGame() { //activated from loading the window
+    score = parseFloat(getCookieValue("score"));
+    round = parseFloat(getCookieValue("round"));
+    roll = parseFloat(getCookieValue("roll"));
     
+    //restore existing lines
+    for (let i=0; i<round; i++) {
+        guessed = parseFloat(getCookieValue("line" + i + "origin"));
+        correct = parseFloat(getCookieValue("line" + i + "dest"));
+        line[i] = L.polyline(
+            [[cities[guessed].Y, cities[guessed].X], [cities[correct].Y, cities[correct].X]], {color: '#ffa0a0'}
+        ).addTo(map);
+        const polyline_tooltip = getCookieValue("line" + i + "tooltip");
+        line[i].bindTooltip(polyline_tooltip);
+    }
+    //restore highscore
+    document.getElementById("highscore").innerHTML = "Weekly Highscore: " + parseFloat(getCookieValue("highscore"));
+    
+    save_sound = true;
     nextRound();
+}
+
+function getCookieValue(name) {
+    const fields = document.cookie.split(';');
+    for (let c of fields) {
+        const [key, value] = c.trim().split('=');
+        if (key === name) return value;
+    }
+    return 0;
 }
 
 function newGame() { //activated from pressing the New Game button
@@ -468,12 +610,12 @@ document.onkeydown = function(e) {
 }
 
 function toggleAudio() {
-  soundwave.playPause();
-  if (soundwave.isPlaying()) {
-    playButton.src = "assets/pause_sound.png";
-  } else {
-    playButton.src = "assets/play_sound.png";
-  }
+    soundwave.playPause();
+    if (soundwave.isPlaying()) {
+        playButton.src = "assets/pause_sound.png";
+    } else {
+        playButton.src = "assets/play_sound.png";
+    }
 }
 playButton.addEventListener('click', toggleAudio);
 
@@ -482,4 +624,23 @@ volume.addEventListener("change", function(e) {
     soundwave.setVolume(e.currentTarget.value / 100);
 })
 
-window.onload = startGame();
+const muteButton = document.querySelector('#volume_icon');
+const muted = 0;
+
+function toggleMute() {
+    if (soundwave.getMuted() == false) {
+        soundwave.setMuted(true);
+        muteButton.src = "assets/muted_icon.png";
+        volume.value = 0;
+    }
+    else {
+        soundwave.setMuted(false);
+        muteButton.src = "assets/volume_icon.png";
+        volume.value = 100 * soundwave.getVolume();
+    }
+}
+muteButton.addEventListener('click', toggleMute);
+
+//START
+
+window.onload = loadGame();
