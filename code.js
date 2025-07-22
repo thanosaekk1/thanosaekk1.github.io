@@ -61,6 +61,14 @@ const cities = [
         variants: 1
     },
     {
+        city_name: "Buenos_Aires",
+        X: -58.381,
+        Y: -34.604,
+        full_name: "Buenos Aires",
+        country: "Argentina",
+        variants: 1
+    },
+    {
         city_name: "Cairo",
         X: 31.236,
         Y: 30.044,
@@ -82,6 +90,14 @@ const cities = [
         Y: 33.513,
         full_name: "Damascus",
         country: "Syria",
+        variants: 1
+    },
+    {
+        city_name: "Dhaka",
+        X: 90.415,
+        Y: 23.804,
+        full_name: "Dhaka",
+        country: "Bangladesh",
         variants: 1
     },
     {
@@ -125,11 +141,27 @@ const cities = [
         variants: 1
     },
     {
+        city_name: "Kyiv",
+        X: 30.523,
+        Y: 50.450,
+        full_name: "Kyiv",
+        country: "Ukraine",
+        variants: 1
+    },
+    {
         city_name: "Lagos",
         X: 3.384,
         Y: 6.455,
         full_name: "Lagos",
         country: "Nigeria",
+        variants: 1
+    },
+    {
+        city_name: "Lahore",
+        X: 74.344,
+        Y: 31.550,
+        full_name: "Lahore",
+        country: "Pakistan",
         variants: 1
     },
     {
@@ -146,6 +178,14 @@ const cities = [
         Y: 14.596,
         full_name: "Manila",
         country: "Philippines",
+        variants: 1
+    },
+    {
+        city_name: "Maputo",
+        X: 32.583,
+        Y: -25.967,
+        full_name: "Maputo",
+        country: "Mozambique",
         variants: 1
     },
     {
@@ -173,6 +213,14 @@ const cities = [
         variants: 1
     },
     {
+        city_name: "Nairobi",
+        X: 36.817,
+        Y: -1.286,
+        full_name: "Nairobi",
+        country: "Kenya",
+        variants: 1
+    },
+    {
         city_name: "New_Orleans",
         X: -90.078,
         Y: 29.976,
@@ -186,6 +234,14 @@ const cities = [
         Y: 40.713,
         full_name: "New York City",
         country: "United States",
+        variants: 1
+    },
+    {
+        city_name: "Oslo",
+        X: 10.739,
+        Y: 59.913,
+        full_name: "Oslo",
+        country: "Norway",
         variants: 1
     },
     {
@@ -226,6 +282,14 @@ const cities = [
         Y: 59.937,
         full_name: "Saint Petersburg",
         country: "Russia",
+        variants: 1
+    },
+    {
+        city_name: "San_Francisco",
+        X: -122.417,
+        Y: 37.783,
+        full_name: "San Francisco",
+        country: "United States",
         variants: 1
     },
     {
@@ -285,6 +349,14 @@ const cities = [
         variants: 1
     },
     {
+        city_name: "Tehran",
+        X: 51.390,
+        Y: 35.689,
+        full_name: "Tehran",
+        country: "Iran",
+        variants: 1
+    },
+    {
         city_name: "Tokyo",
         X: 139.767,
         Y: 35.683,
@@ -330,6 +402,14 @@ const cities = [
         Y: 52.230,
         full_name: "Warsaw",
         country: "Poland",
+        variants: 1
+    },
+    {
+        city_name: "Yangon",
+        X: 96.160,
+        Y: 16.795,
+        full_name: "Yangon",
+        country: "Myanmar",
         variants: 1
     },
     {

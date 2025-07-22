@@ -50,7 +50,7 @@ p {
 .audio_player {
     position: relative;
     float: left;
-    left: 200px;
+    left: 10%;
 }
 #waveform {
     padding: 10px;
@@ -118,7 +118,7 @@ p {
     position: relative;
     float: right;
     width: 50%;
-    right: 200px;
+    right: 10%;
 }
 #map {
     width: 700px;
