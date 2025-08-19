@@ -3,20 +3,12 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    font-family: 'Trebuchet MS';
 }
 header {
     padding: 5px;
     background-color:rgba(100, 131, 46, 1);
     text-align: center;
-}
-h2 {
-    font-family: Helvetica;
-}
-h1 {
-    font-family: Helvetica;
-}
-p {
-    font-family: Helvetica;
 }
 
 /*HEADER AND SCORE*/
@@ -40,30 +32,35 @@ p {
     color: white;
 }
 #score_num {
-    font-family: Helvetica;
     font-size: 30px;
     padding: 10px;
     text-align: center;
 }
 
+.main_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
 /*AUDIO AND RESULTS*/
 .audio_player {
-    position: relative;
-    float: left;
-    left: 10%;
+    display: grid;
+
 }
 #waveform {
     padding: 10px;
-    float: left;
     z-index: 0;
+    grid-area: 1 / 1;
 }
 #result_overlay {
-    width: 700px;
-    height: 700px;
     padding: 10px;
     background-color: rgba(162, 197, 100, 0.75);
-    position: absolute;
     z-index: 100;
+    grid-area: 1 / 1;
 }
 #revealed_city_name {
     position: absolute;
@@ -115,10 +112,7 @@ p {
 
 /*MAP*/
 .map_container {
-    position: relative;
-    float: right;
     width: 50%;
-    right: 10%;
 }
 #map {
     width: 700px;
@@ -136,6 +130,7 @@ p {
     border-radius: 10px;
     font-size: 20px;
     cursor: pointer;
+    font-family: 'Trebuchet MS';
 }
 .button_style:hover {
     background-color: rgb(75, 99, 35);

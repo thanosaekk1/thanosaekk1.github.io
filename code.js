@@ -514,9 +514,8 @@ function confirmGuess() {
     //score
     const distance = calcDistance(guessed_Y, guessed_X, correct_Y, correct_X);
     round_score = 1000 * (0.9995 ** distance);
+    round_score = parseFloat(round_score.toFixed(0));
     score = score + round_score;
-    round_score = parseFloat(round_score.toFixed(2));
-    score = parseFloat(score.toFixed(2));
     document.getElementById("score_num").innerHTML = "Score: " + score + " — Round: " + round + "/5";
 
     //draw the line
