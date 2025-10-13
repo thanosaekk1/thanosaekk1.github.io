@@ -1,20 +1,40 @@
-<!DOCTYPE html>
-
 <html>
 <head>
-<title>EchoLocate: Find Yourself in the World</title>
+<title>EchoLocate: Guess the City by Sound</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favico.png">
     <link rel="stylesheet" href="styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--check if it has an effect-->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--social media icons-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Guess the City by Sound"/>
+    <meta property="og:description" content="You are given five 30-second clips from cities around the world. Your task is to guess where the sound is from as best you can, and earn up to 1000 points every round depending on how close your guess was."/>
+    <meta property="og:image" content="/assets/banner_image.png"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""/>
 </head>
 <body>
 
 <header>
-    <p id="game_title"><b>EchoLocate</b></p>
-    <p id="game_desc">In this game, you are given five 30-second clips from cities around the world. Your task is to guess where the sound is from as best you can, and earn up to 1000 points every round depending on how close your guess was.</p>
-    <p id="highscore">Weekly Highscore: 0</p>
+    <div class="header_wrapper">
+        <div class="logo_div">
+            <image id="game_logo" src="assets/logo.png"></image>
+        </div>
+        <div class="info_div">
+            <p id="game_title"><b>EchoLocate</b></p>
+            <p id="game_desc">In this game, you are given five 30-second clips from cities around the world. Your task is to guess where the sound is from as best you can, and earn up to 1000 points every round depending on how close your guess was.</p>
+        </div>
+        <div class="extras_div">
+            <p id="highscore">Weekly Highscore: 0</p>
+            <div class="social_icons">
+                <a href="mailto:echolocatedev@gmail.com"><image id="contact_me" src="assets/contact.png" title="Have any feedback or bugs?
+Is a sound misleading for the city it represents?
+Do you want sound from a tour of yours taken down?
+Or uploaded?
+Shoot me a message!"></image></a>
+                <a href="https://www.instagram.com/echolocate_official/" class="fa fa-instagram fa-2x"></a>
+            </div>
+        </div>
+    </div>
 </header>
 
 <div class="game_info">
@@ -23,11 +43,15 @@
 
 <div class="main_wrapper">
     <div class="audio_player">
-        <div id="waveform"></div>
-        <div id="result_overlay">
-            <h2 id="revealed_city_name">City Name</h2>
-            <br><br>
-            <h3 id="round_score">Score Gained</h3>
+        <div class="audio-results-wrapper">
+            <div id="waveform"></div>
+            <div id="result_overlay">
+                <h2 id="revealed_city_name">City Name</h2>
+                <br><br>
+                <h3 id="round_score">Score Gained</h3>
+                <br><br>
+                <a href="https://www.google.com" id="audio_source">Source</a>
+            </div>
         </div>
         <div id="audio_control">
             <input id="play_button" type="image" src="assets/play_sound.png"></input>
@@ -46,12 +70,23 @@
     </div>
 </div>
 
+<div id="results_popup">
+    <div id="results_content">
+        <div id="results_header">
+            <span id="close_btn" onclick="hideResults()">&times;</span>
+            <h1 id="result_stat">title</h1>
+        </div>
+        <p id="detailed_results">hello there</p>
+    </div>
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
 
 <script src="https://unpkg.com/wavesurfer.js@7"></script>
 
+<script src="cities.js"></script>
 <script src="code.js"></script>
 
 </body>

@@ -11,418 +11,19 @@ const soundwave = WaveSurfer.create({
   container: '#waveform',
   waveColor: '#464646ff',
   progressColor: '#2b2b2bff',
-  height: 700,
-  width: 700,
+  height: 680,
   barWidth: 2,
   barGap: 1,
   barRadius: 2
 })
 //WAVESURFER END
 
-const cities = [
-    {
-        city_name: "Amsterdam",
-        X: 4.894,
-        Y: 52.373,
-        full_name: "Amsterdam",
-        country: "Netherlands",
-        variants: 1
-    },
-    {
-        city_name: "Athens",
-        X: 23.728,
-        Y: 37.984,
-        full_name: "Athens",
-        country: "Greece",
-        variants: 1
-    },
-    {
-        city_name: "Barcelona",
-        X: 2.183,
-        Y: 41.383,
-        full_name: "Barcelona",
-        country: "Spain",
-        variants: 1
-    },
-    {
-        city_name: "Belgrade",
-        X: 20.457,
-        Y: 44.818,
-        full_name: "Belgrade",
-        country: "Serbia",
-        variants: 1
-    },
-    {
-        city_name: "Bengaluru",
-        X: 77.592,
-        Y: 12.979,
-        full_name: "Bengaluru",
-        country: "India",
-        variants: 1
-    },
-    {
-        city_name: "Buenos_Aires",
-        X: -58.381,
-        Y: -34.604,
-        full_name: "Buenos Aires",
-        country: "Argentina",
-        variants: 1
-    },
-    {
-        city_name: "Cairo",
-        X: 31.236,
-        Y: 30.044,
-        full_name: "Cairo",
-        country: "Egypt",
-        variants: 1
-    },
-    {
-        city_name: "Cap_Haitien",
-        X: -72.200,
-        Y: 19.760,
-        full_name: "Cap-Haïtien",
-        country: "Haiti",
-        variants: 1
-    },
-    {
-        city_name: "Damascus",
-        X: 36.309,
-        Y: 33.513,
-        full_name: "Damascus",
-        country: "Syria",
-        variants: 1
-    },
-    {
-        city_name: "Dhaka",
-        X: 90.415,
-        Y: 23.804,
-        full_name: "Dhaka",
-        country: "Bangladesh",
-        variants: 1
-    },
-    {
-        city_name: "Edinburgh",
-        X: -3.183,
-        Y: 55.950,
-        full_name: "Edinburgh",
-        country: "United Kingdom",
-        variants: 1
-    },
-    {
-        city_name: "Geneva",
-        X: 6.147,
-        Y: 46.202,
-        full_name: "Geneva",
-        country: "Switzerland",
-        variants: 1
-    },
-    {
-        city_name: "Havana",
-        X: -82.359,
-        Y: 23.137,
-        full_name: "Havana",
-        country: "Cuba",
-        variants: 1
-    },
-    {
-        city_name: "Istanbul",
-        X: 28.955,
-        Y: 41.014,
-        full_name: "Istanbul",
-        country: "Turkey",
-        variants: 1
-    },
-    {
-        city_name: "Kinshasa",
-        X: 15.312,
-        Y: -4.322,
-        full_name: "Kinshasa",
-        country: "DR Congo",
-        variants: 1
-    },
-    {
-        city_name: "Kyiv",
-        X: 30.523,
-        Y: 50.450,
-        full_name: "Kyiv",
-        country: "Ukraine",
-        variants: 1
-    },
-    {
-        city_name: "Lagos",
-        X: 3.384,
-        Y: 6.455,
-        full_name: "Lagos",
-        country: "Nigeria",
-        variants: 1
-    },
-    {
-        city_name: "Lahore",
-        X: 74.344,
-        Y: 31.550,
-        full_name: "Lahore",
-        country: "Pakistan",
-        variants: 1
-    },
-    {
-        city_name: "London",
-        X: -0.127,
-        Y: 51.507,
-        full_name: "London",
-        country: "United Kingdom",
-        variants: 1
-    },
-    {
-        city_name: "Manila",
-        X: 120.977,
-        Y: 14.596,
-        full_name: "Manila",
-        country: "Philippines",
-        variants: 1
-    },
-    {
-        city_name: "Maputo",
-        X: 32.583,
-        Y: -25.967,
-        full_name: "Maputo",
-        country: "Mozambique",
-        variants: 1
-    },
-    {
-        city_name: "Mexico_City",
-        X: -99.133,
-        Y: 19.433,
-        full_name: "Mexico City",
-        country: "Mexico",
-        variants: 1
-    },
-    {
-        city_name: "Mumbai",
-        X: 72.877,
-        Y: 19.076,
-        full_name: "Mumbai",
-        country: "India",
-        variants: 1
-    },
-    {
-        city_name: "Munich",
-        X: 11.575,
-        Y: 48.137,
-        full_name: "Munich",
-        country: "Germany",
-        variants: 1
-    },
-    {
-        city_name: "Nairobi",
-        X: 36.817,
-        Y: -1.286,
-        full_name: "Nairobi",
-        country: "Kenya",
-        variants: 1
-    },
-    {
-        city_name: "New_Orleans",
-        X: -90.078,
-        Y: 29.976,
-        full_name: "New Orleans",
-        country: "United States",
-        variants: 1
-    },
-    {
-        city_name: "New_York",
-        X: -74.006,
-        Y: 40.713,
-        full_name: "New York City",
-        country: "United States",
-        variants: 1
-    },
-    {
-        city_name: "Oslo",
-        X: 10.739,
-        Y: 59.913,
-        full_name: "Oslo",
-        country: "Norway",
-        variants: 1
-    },
-    {
-        city_name: "Paris",
-        X: 2.352,
-        Y: 48.857,
-        full_name: "Paris",
-        country: "France",
-        variants: 1
-    },
-    {
-        city_name: "Phnom_Penh",
-        X: 104.921,
-        Y: 11.569,
-        full_name: "Phnom Penh",
-        country: "Cambodia",
-        variants: 1
-    },
-    {
-        city_name: "Rio_de_Janeiro",
-        X: -43.206,
-        Y: -22.911,
-        full_name: "Rio de Janeiro",
-        country: "Brazil",
-        variants: 1
-    },
-    {
-        city_name: "Riyadh",
-        X: 46.717,
-        Y: 24.633,
-        full_name: "Riyadh",
-        country: "Saudi Arabia",
-        variants: 1
-    },
-    {
-        city_name: "Saint_Petersburg",
-        X: 30.309,
-        Y: 59.937,
-        full_name: "Saint Petersburg",
-        country: "Russia",
-        variants: 1
-    },
-    {
-        city_name: "San_Francisco",
-        X: -122.417,
-        Y: 37.783,
-        full_name: "San Francisco",
-        country: "United States",
-        variants: 1
-    },
-    {
-        city_name: "Santiago",
-        X: -70.650,
-        Y: -33.437,
-        full_name: "Santiago",
-        country: "Chile",
-        variants: 1
-    },
-    {
-        city_name: "Seoul",
-        X: 126.983,
-        Y: 37.567,
-        full_name: "Seoul",
-        country: "South Korea",
-        variants: 1
-    },
-    {
-        city_name: "Shanghai",
-        X: 121.475,
-        Y: 31.229,
-        full_name: "Shanghai",
-        country: "China",
-        variants: 1
-    },
-    {
-        city_name: "Singapore",
-        X: 103.833,
-        Y: 1.283,
-        full_name: "Singapore",
-        country: "Singapore",
-        variants: 1
-    },
-    {
-        city_name: "Sydney",
-        X: 151.200,
-        Y: -33.867,
-        full_name: "Sydney",
-        country: "Australia",
-        variants: 1
-    },
-    {
-        city_name: "Taipei",
-        X: 121.562,
-        Y: 25.037,
-        full_name: "Taipei",
-        country: "Taiwan",
-        variants: 1
-    },
-    {
-        city_name: "Tangier",
-        X: -5.804,
-        Y: 35.777,
-        full_name: "Tangier",
-        country: "Morocco",
-        variants: 1
-    },
-    {
-        city_name: "Tehran",
-        X: 51.390,
-        Y: 35.689,
-        full_name: "Tehran",
-        country: "Iran",
-        variants: 1
-    },
-    {
-        city_name: "Tokyo",
-        X: 139.767,
-        Y: 35.683,
-        full_name: "Tokyo",
-        country: "Japan",
-        variants: 1
-    },
-    {
-        city_name: "Tunis",
-        X: 10.182,
-        Y: 36.806,
-        full_name: "Tunis",
-        country: "Tunisia",
-        variants: 1
-    },
-    {
-        city_name: "Ulaanbaatar",
-        X: 106.915,
-        Y: 47.922,
-        full_name: "Ulaanbaatar",
-        country: "Mongolia",
-        variants: 1
-    },
-    {
-        city_name: "Venice",
-        X: 12.336,
-        Y: 45.437,
-        full_name: "Venice",
-        country: "Italy",
-        variants: 1
-    },
-    {
-        city_name: "Vienna",
-        X: 16.372,
-        Y: 48.208,
-        full_name: "Vienna",
-        country: "Austria",
-        variants: 1
-    },
-    {
-        city_name: "Warsaw",
-        X: 21.011,
-        Y: 52.230,
-        full_name: "Warsaw",
-        country: "Poland",
-        variants: 1
-    },
-    {
-        city_name: "Yangon",
-        X: 96.160,
-        Y: 16.795,
-        full_name: "Yangon",
-        country: "Myanmar",
-        variants: 1
-    },
-    {
-        city_name: "Yerevan",
-        X: 44.514,
-        Y: 40.181,
-        full_name: "Yerevan",
-        country: "Armenia",
-        variants: 1
-    }
-];
-
 const city_num = cities.length;
+let sound_num = 0;
+for (let i=0; i<cities.length; i++) {
+    sound_num += cities[i].variants;
+}
+console.log(sound_num);
 
 const playButton = document.querySelector('#play_button');
 
@@ -431,6 +32,8 @@ let score = 0; //total score
 let round_score = 0;
 
 let roll = 0;
+let rolled_city = 0;
+let variant = 1;
 let made_guess = false;
 let guessed = 0; //index of the city selected
 
@@ -466,11 +69,13 @@ var wrong_icon = L.icon(
 );
 
 cities.forEach((Data, i) => {
-    marker[i] = L.marker(
-        [Data.Y, Data.X],
-        {icon: default_icon},
-    ).addTo(map);
-    marker[i].bindTooltip(Data.full_name);
+    //if (Data.sources[0] != "https://www.google.com") {
+        marker[i] = L.marker(
+            [Data.Y, Data.X],
+            {icon: default_icon},
+        ).addTo(map);
+        marker[i].bindTooltip(Data.full_name);
+    //}
 }
 );
 
@@ -504,11 +109,11 @@ function confirmGuess() {
     if (guessed == -1) {    //no guess made
         return 0;
     }
-    if (guessed == roll) {  //correct guess
+    if (guessed == rolled_city) {  //correct guess
         marker[guessed].setIcon(correct_icon);
     } else {                //wrong guess
         marker[guessed].setIcon(wrong_icon);
-        marker[roll].setIcon(correct_icon);
+        marker[rolled_city].setIcon(correct_icon);
     }
 
     //score
@@ -522,25 +127,43 @@ function confirmGuess() {
     line[round-1] = L.polyline(
         [[guessed_Y, guessed_X], [correct_Y, correct_X]], {color: '#FF0000'}
     ).addTo(map);
-    const polyline_tooltip = "Round " + round + "<br>Guessed: " + cities[guessed].full_name + "<br>Correct: " + cities[roll].full_name + "<br>Distance: " + distance.toFixed(2) + " km<br>Score: " + round_score;
+    const polyline_tooltip = "Round " + round + "<br>Guessed: " + cities[guessed].full_name + "<br>Correct: " + cities[rolled_city].full_name + "<br>Distance: " + distance.toFixed(2) + " km<br>Score: " + round_score;
     line[round-1].bindTooltip(polyline_tooltip);
 
     //overlay
     document.getElementById("result_overlay").style.visibility = "visible";
-    document.getElementById("revealed_city_name").innerHTML = cities[roll].full_name + ", " + cities[roll].country;
+    var sound;
+    if (round_score == 1000) {
+        document.getElementById("result_overlay").style.backgroundColor = 'rgba(162, 197, 100, 0.75)';
+        sound = new Audio('effects/correct.mp3');
+    }
+    else if (round_score > 0) {
+        document.getElementById("result_overlay").style.backgroundColor = 'rgba(197, 179, 100, 0.75)';
+        sound = new Audio('effects/half_wrong.mp3');
+    }
+    else {
+        document.getElementById("result_overlay").style.backgroundColor = 'rgba(194, 123, 123, 0.75)';
+        sound = new Audio('effects/wrong.mp3');
+    }
+    sound.play();
+    document.getElementById("revealed_city_name").innerHTML = cities[rolled_city].full_name + ", " + cities[rolled_city].country;
     document.getElementById("round_score").innerHTML = round_score + " points earned";
 
     //save cookies for the round//create cookie
     document.cookie = "score=" + score + "; path=/";
     document.cookie = "round=" + round + "; path=/";
-    document.cookie = "roll=" + roll + "; path=/";
+    document.cookie = "rolled_city=" + rolled_city + "; path=/";
+    document.cookie = "variant=" + variant + "; path=/";
 
     document.cookie = "line" + (round-1) + "origin" + "=" + guessed;
-    document.cookie = "line" + (round-1) + "dest" + "=" + roll;
+    document.cookie = "line" + (round-1) + "dest" + "=" + rolled_city;
+    document.cookie = "line" + (round-1) + "round_score" + "=" + round_score;
     document.cookie = "line" + (round-1) + "tooltip" + "=" + polyline_tooltip;
 
     guessed = -1;
     made_guess = true;
+
+    if (round==5) resultsScreen();
 
     return 0;
 }
@@ -577,12 +200,7 @@ function nextRoundButton() {
 
 function nextRound() {
     if (round>4) { //game over
-        if (score == 5000) {
-            alert("Game over! You have earned all 5000 possible points you could!");
-        }
-        else {
-            alert("Game over! You earned " + score + " points out of possible 5000!");
-        }
+        resultsScreen();
         //update highscore
         if (score>parseFloat(getCookieValue("highscore"))) {
             const exp_date = new Date();
@@ -603,34 +221,63 @@ function nextRound() {
     });
     
     if (save_sound == false) {
-        roll = Math.floor(Math.random()*city_num); //only roll anew in case of new round or new game, not refresh
+        roll = Math.floor(Math.random()*sound_num); //only roll anew in case of new round or new game, not refresh
+        let sounds_passed = 0;
+        for (let i=0; i<city_num; i++) {
+            sounds_passed += cities[i].variants;
+            if (sounds_passed > roll) {
+                rolled_city = i;
+                break;
+            }
+        }
+        variant = Math.floor(Math.random()*cities[rolled_city].variants) + 1;
+        console.log(cities[rolled_city].city_name + variant); //remove later
+        document.getElementById("audio_source").href = cities[rolled_city].sources[variant-1];
 
-        //DOESN'T WORK
         //insurance against getting the same city twice in a game
-        /*let re_roll = false;
+        let re_roll = false;
         for (let i=0; i<round-1; i++) {
-            console.log(cities[parseFloat(getCookieValue("line" + i + "dest"))].city_name);
-            if (parseFloat(getCookieValue("line" + i + "dest"))==roll) re_roll = true;
+            //console.log(cities[parseFloat(getCookieValue("line" + i + "dest"))].city_name);
+            if (parseFloat(getCookieValue("line" + i + "dest"))==rolled_city) re_roll = true;
         }
 
         while (re_roll == true) {
-            roll = Math.floor(Math.random()*city_num);
-            console.log(cities[roll].city_name);
+            roll = Math.floor(Math.random()*sound_num);
+            sounds_passed = 0;
+            for (let i=0; i<city_num; i++) {
+                sounds_passed += cities[i].variants;
+                if (sounds_passed > roll) {
+                    rolled_city = i;
+                    break;
+                }
+            }
+            variant = Math.floor(Math.random()*cities[rolled_city].variants) + 1;
             re_roll = false;
             for (let i=0; i<round-1; i++)
-                if (parseFloat(getCookieValue("line" + i + "dest"))==roll) re_roll = true;
-        }*/
+                if (parseFloat(getCookieValue("line" + i + "dest"))==rolled_city) re_roll = true;
+        }
+    } else { //restore sound from previous session
+        rolled_city = getCookieValue("rolled_city");
+        variant = getCookieValue("variant");
     }
     save_sound = false;
 
-    const audio_name = "sounds/" + cities[roll].city_name + ".mp3";
+    const audio_name = "sounds/" + cities[rolled_city].city_name + variant + ".mp3";
+    document.cookie = "rolled_city=" + rolled_city + "; path=/";
+    document.cookie = "variant=" + variant + "; path=/";
+    
     soundwave.load(audio_name);
     soundwave.setTime(0);
-    soundwave.setVolume(0.5);
-    playButton.src = "assets/play_sound.png";
+    //soundwave.setVolume(0.5);
+    if (round>1) {
+        soundwave.once('ready', () => {
+            soundwave.play();
+            playButton.src = "assets/pause_sound.png";
+        });
+    } else playButton.src = "assets/play_sound.png";
 
-    correct_X = cities[roll].X;
-    correct_Y = cities[roll].Y;
+    correct_X = cities[rolled_city].X;
+    correct_Y = cities[rolled_city].Y;
 
     made_guess = false;
 }
@@ -638,7 +285,8 @@ function nextRound() {
 function loadGame() { //activated from loading the window
     score = parseFloat(getCookieValue("score"));
     round = parseFloat(getCookieValue("round"));
-    roll = parseFloat(getCookieValue("roll"));
+    rolled_city = parseFloat(getCookieValue("rolled_city"));
+    variant = parseFloat(getCookieValue("variant"));
     
     //restore existing lines
     for (let i=0; i<round; i++) {
@@ -653,8 +301,43 @@ function loadGame() { //activated from loading the window
     //restore highscore
     document.getElementById("highscore").innerHTML = "Weekly Highscore: " + parseFloat(getCookieValue("highscore"));
     
-    save_sound = true;
+    //no guess made yet: save sound from cookie
+    //confirmed guess: advance to next round
+    if (getCookieValue("round")>0)
+        save_sound = true;
+    else save_sound = false;
     nextRound();
+}
+
+function resultsScreen() {
+    document.getElementById("results_popup").style.display = "block";
+    if (score == 5000) {
+        document.getElementById("result_stat").innerHTML = "Congratulations!<br>Final Score: 5000";
+    }
+    else {
+        document.getElementById("result_stat").innerHTML = "Final Score: " + score;
+    }
+    let detailedResults = "";
+    for (let i=0; i<5; i++) {
+        detailedResults += cities[parseFloat(getCookieValue("line" + i + "dest"))].full_name
+                        + ": +"
+                        + parseFloat(getCookieValue("line" + i + "round_score"))
+                        + " (Guessed: "
+                        + cities[parseFloat(getCookieValue("line" + i + "origin"))].full_name
+                        + ") "
+                        + "<br>";
+    }
+    document.getElementById("detailed_results").innerHTML = detailedResults;
+
+    //prevent the game from choking out previous results when you refresh at the results screen
+    document.cookie = "score=" + 0 + "; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+    document.cookie = "round=" + 0 + "; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+    document.cookie = "rolled_city=" + 0 + "; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+    document.cookie = "variant=" + 0 + "; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+}
+
+function hideResults() {
+    document.getElementById("results_popup").style.display = "none";
 }
 
 function getCookieValue(name) {
@@ -673,6 +356,18 @@ function newGame() { //activated from pressing the New Game button
     line.forEach((Data, i) => {
         line[i].removeFrom(map);
     });
+    //clear all past memory
+    document.cookie = "score=" + 0 + "; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+    document.cookie = "round=" + 0 + "; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+    document.cookie = "rolled_city=" + 0 + "; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+    document.cookie = "variant=" + 0 + "; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
+    for (let i=0; i<5; i++) {
+        document.cookie = "line" + i + "origin" + "=" + 0 + "; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        document.cookie = "line" + i + "dest" + "=" + 0 + "; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        document.cookie = "line" + i + "round_score" + "=" + 0 + "; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        document.cookie = "line" + i + "tooltip" + "=" + 0 + "; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    }
 }
 
 //AUDIO CONTROL
@@ -686,14 +381,22 @@ document.onkeydown = function(e) {
         soundwave.setTime(soundwave.getCurrentTime() + 5);
     else if (e.key == 'ArrowLeft')
         soundwave.setTime(soundwave.getCurrentTime() - 5);
+    else if (e.key == 'Escape')
+        hideResults();
 }
 
 function toggleAudio() {
-    soundwave.playPause();
-    if (soundwave.isPlaying()) {
+    if (soundwave.getCurrentTime() >= soundwave.getDuration()) { //pressing play after having finished the clip
+        soundwave.setTime(0);
+        soundwave.play();
         playButton.src = "assets/pause_sound.png";
-    } else {
-        playButton.src = "assets/play_sound.png";
+    } else { //normal toggle
+        soundwave.playPause();
+        if (soundwave.isPlaying()) {
+            playButton.src = "assets/pause_sound.png";
+        } else {
+            playButton.src = "assets/play_sound.png";
+        }
     }
 }
 playButton.addEventListener('click', toggleAudio);
@@ -719,6 +422,10 @@ function toggleMute() {
     }
 }
 muteButton.addEventListener('click', toggleMute);
+
+soundwave.on('finish', function() {
+    playButton.src = "assets/play_sound.png";
+});
 
 //START
 

@@ -12,24 +12,37 @@ header {
 }
 
 /*HEADER AND SCORE*/
+.header_wrapper {
+    position: relative;
+    display: grid;
+    grid-template-columns: 100px auto 100px;
+    align-items: center;
+    gap: 1%;
+}
 #game_title {
     font-size: 30px;
     margin: 0;
-    padding: 5px;
     color: white;
 }
 #game_desc {
     margin: 0;
-    padding: 5px;
     color: white;
 }
 #highscore {
-    position: absolute;
     margin: 0;
-    padding: 5px;
-    top: 10px;
-    right: 10px;
     color: white;
+}
+.social_icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.fa {
+    text-decoration: none;
+}
+.fa-instagram {
+    color: rgb(255, 123, 0);
 }
 #score_num {
     font-size: 30px;
@@ -42,14 +55,16 @@ header {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin-left: 10%;
-    margin-right: 10%;
+    gap: 1%;
 }
 
 /*AUDIO AND RESULTS*/
 .audio_player {
+    width: 40%;
+    min-width: 350px;
+}
+.audio-results-wrapper {
     display: grid;
-
 }
 #waveform {
     padding: 10px;
@@ -61,14 +76,30 @@ header {
     background-color: rgba(162, 197, 100, 0.75);
     z-index: 100;
     grid-area: 1 / 1;
+    visibility: hidden;
 }
 #revealed_city_name {
     position: absolute;
 }
+
+#audio_control {
+    position: relative;
+    display: flex;
+    /*height: 55px; determines position of two sides*/
+}
+#play_button {
+    position: relative;
+    vertical-align: middle;
+    top: 10px;
+}
+#play_button:hover {
+    filter: brightness(0.8);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
+}
 #volume_icon {
     cursor: pointer;
     position: relative;
-    top: 10px;
+    top: 7px;
 }
 .slider {
     /*remove default*/
@@ -80,10 +111,9 @@ header {
     height: 10px;
     background: #000000;
     border-radius: 10px;
-    display: inline-block;
     vertical-align: middle;
     position: relative;
-    bottom: 10px;
+    top: 25px;
 }
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -101,23 +131,14 @@ header {
     border-radius: 50%;
     border: 2px solid #333;
 }
-#play_button {
-    position: relative;
-    top: 10px;
-}
-#play_button:hover {
-    filter: brightness(0.8);
-    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
-}
 
 /*MAP*/
 .map_container {
-    width: 50%;
+    width: 40%;
+    min-width: 350px;
 }
 #map {
-    width: 700px;
-    height: 720px;
-    float: right;
+    height: 700px;
 }
 
 /*ACTION BUTTONS*/
@@ -131,11 +152,42 @@ header {
     font-size: 20px;
     cursor: pointer;
     font-family: 'Trebuchet MS';
+    min-width: 150px; /*to prevent the length of the text from determining the width*/
 }
 .button_style:hover {
     background-color: rgb(75, 99, 35);
     box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
 }
 #map_buttons {
+    text-align: center;
+}
+#new_game_button {
+    background-color: rgb(59, 78, 28);
+}
+
+/*RESULTS POPUP*/
+#results_popup {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    padding-top: 300px;
+    background-color: rgb(0,0,0, 0.4);
+}
+#results_content {
+    padding: 10px;
+    width: 50%;
+    border-radius: 10px;
+    margin: auto;
+    text-align: center;
+    background-color: skyblue;
+}
+#close_btn {
     float: right;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
 }
