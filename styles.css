@@ -191,3 +191,10 @@ header {
     font-weight: bold;
     cursor: pointer;
 }
+#result_stat {
+    display: inline-block;
+}
+#max_points {
+    display: inline-block;
+    color: gray;
+}

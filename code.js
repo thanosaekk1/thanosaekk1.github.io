@@ -1,5 +1,7 @@
 //LEAFLET
-var map = L.map('map').setView([0, 0], 2);
+var map = L.map('map', {
+    maxBounds: [[-90, -200], [90, 200]]
+}).setView([0, 0], 2);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 13,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -67,15 +69,26 @@ var wrong_icon = L.icon(
         iconSize: [11, 11]
     }
 );
+var prev_correct_icon = L.icon(
+    {
+        iconUrl: 'assets/city_prev_correct.png',
+        iconSize: [11, 11]
+    }
+);
+var prev_wrong_icon = L.icon(
+    {
+        iconUrl: 'assets/city_prev_wrong.png',
+        iconSize: [11, 11]
+    }
+);
 
+//initialize city markers on the map
 cities.forEach((Data, i) => {
-    //if (Data.sources[0] != "https://www.google.com") {
-        marker[i] = L.marker(
-            [Data.Y, Data.X],
-            {icon: default_icon},
-        ).addTo(map);
-        marker[i].bindTooltip(Data.full_name);
-    //}
+    marker[i] = L.marker(
+        [Data.Y, Data.X],
+        {icon: default_icon},
+    ).addTo(map);
+    marker[i].bindTooltip(Data.full_name);
 }
 );
 
@@ -93,6 +106,8 @@ function cityClick() {
         marker[i].setIcon(default_icon);
         }
     );
+    //add previous wrong/correct guesses
+    colorGuesses();
     //select new city
     this.setIcon(selected_icon);
     return 0;
@@ -106,12 +121,12 @@ function confirmGuess() {
             guessed_Y = Data.Y;
         }
     });
-    if (guessed == -1) {    //no guess made
+    if (guessed == -1) { //no guess made
         return 0;
     }
-    if (guessed == rolled_city) {  //correct guess
+    if (guessed == rolled_city) { //correct guess
         marker[guessed].setIcon(correct_icon);
-    } else {                //wrong guess
+    } else { //wrong guess
         marker[guessed].setIcon(wrong_icon);
         marker[rolled_city].setIcon(correct_icon);
     }
@@ -201,13 +216,6 @@ function nextRoundButton() {
 function nextRound() {
     if (round>4) { //game over
         resultsScreen();
-        //update highscore
-        if (score>parseFloat(getCookieValue("highscore"))) {
-            const exp_date = new Date();
-            exp_date.setTime(exp_date.getTime() + (7*24*60*60*1000));
-            document.cookie = "highscore=" + score + "; expires=" + exp_date.toUTCString() + "; path=/";
-            document.getElementById("highscore").innerHTML = "Weekly Highscore: " + score;
-        }
         return 0;
     }
     
@@ -262,6 +270,9 @@ function nextRound() {
     }
     save_sound = false;
 
+    //color icons from previous guesses
+    colorGuesses();
+
     const audio_name = "sounds/" + cities[rolled_city].city_name + variant + ".mp3";
     document.cookie = "rolled_city=" + rolled_city + "; path=/";
     document.cookie = "variant=" + variant + "; path=/";
@@ -311,12 +322,7 @@ function loadGame() { //activated from loading the window
 
 function resultsScreen() {
     document.getElementById("results_popup").style.display = "block";
-    if (score == 5000) {
-        document.getElementById("result_stat").innerHTML = "Congratulations!<br>Final Score: 5000";
-    }
-    else {
-        document.getElementById("result_stat").innerHTML = "Final Score: " + score;
-    }
+    document.getElementById("result_stat").innerHTML = "Final Score: " + score;
     let detailedResults = "";
     for (let i=0; i<5; i++) {
         detailedResults += cities[parseFloat(getCookieValue("line" + i + "dest"))].full_name
@@ -329,6 +335,14 @@ function resultsScreen() {
     }
     document.getElementById("detailed_results").innerHTML = detailedResults;
 
+    //update highscore
+    if (score > parseFloat(getCookieValue("highscore"))) {
+        const exp_date = new Date();
+        exp_date.setTime(exp_date.getTime() + (7*24*60*60*1000));
+        document.cookie = "highscore=" + score + "; expires=" + exp_date.toUTCString() + "; path=/";
+        document.getElementById("highscore").innerHTML = "Weekly Highscore: " + score;
+    }
+
     //prevent the game from choking out previous results when you refresh at the results screen
     document.cookie = "score=" + 0 + "; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     document.cookie = "round=" + 0 + "; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
@@ -338,6 +352,16 @@ function resultsScreen() {
 
 function hideResults() {
     document.getElementById("results_popup").style.display = "none";
+}
+
+function colorGuesses() {
+    for (let i=0; i<round-1; i++) {
+        let prev_city = parseFloat(getCookieValue("line" + i + "origin"));
+        marker[prev_city].setIcon(prev_wrong_icon);
+
+        prev_city = parseFloat(getCookieValue("line" + i + "dest"));
+        marker[prev_city].setIcon(prev_correct_icon);
+    }
 }
 
 function getCookieValue(name) {

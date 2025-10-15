@@ -212,8 +212,8 @@ const cities = [
         Y: 31.229,
         full_name: "Shanghai",
         country: "China",
-        variants: 1,
-        sources: ["https://www.youtube.com/watch?v=xH_yLGj2xfw"]
+        variants: 2,
+        sources: ["https://www.youtube.com/watch?v=xH_yLGj2xfw", "https://www.youtube.com/watch?v=xH_yLGj2xfw"]
     },
     {
         city_name: "Stockholm",
