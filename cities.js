@@ -1,5 +1,14 @@
 const cities = [
     {
+        city_name: "Abidjan",
+        X: -4.033,
+        Y: 5.317,
+        full_name: "Abidjan",
+        country: "Côte d'Ivoire",
+        variants: 2,
+        sources: ["https://www.youtube.com/watch?v=jd48kFTGMGg", "https://www.youtube.com/watch?v=jd48kFTGMGg"]
+    },
+    {
         city_name: "Amsterdam",
         X: 4.894,
         Y: 52.373,
@@ -43,6 +52,15 @@ const cities = [
         country: "Germany",
         variants: 1,
         sources: ["https://www.youtube.com/watch?v=CTxS_DNSyqg"]
+    },
+    {
+        city_name: "Bridgetown",
+        X: -59.613,
+        Y: 13.097,
+        full_name: "Bridgetown",
+        country: "Barbados",
+        variants: 1,
+        sources: ["https://www.youtube.com/watch?v=PAXtQ9HuSfI"]
     },
     {
         city_name: "Cairo",
@@ -117,6 +135,24 @@ const cities = [
         sources: ["https://www.youtube.com/watch?v=roHEkVs3hSE"]
     },
     {
+        city_name: "Manila",
+        X: 120.977,
+        Y: 14.596,
+        full_name: "Manila",
+        country: "Philippines",
+        variants: 2,
+        sources: ["https://www.youtube.com/watch?v=XxOHdvfBhLo", "https://www.youtube.com/watch?v=XxOHdvfBhLo"]
+    },
+    {
+        city_name: "Medellin",
+        X: -75.591,
+        Y: 6.231,
+        full_name: "Medellín",
+        country: "Colombia",
+        variants: 1,
+        sources: ["https://www.youtube.com/watch?v=1HjK0BQXKYc"]
+    },
+    {
         city_name: "Melbourne",
         X: 144.963,
         Y: -37.814,
@@ -142,6 +178,15 @@ const cities = [
         country: "Kenya",
         variants: 1,
         sources: ["https://www.youtube.com/watch?v=42zx6HjTGzM"]
+    },
+    {
+        city_name: "Moscow",
+        X: 37.618,
+        Y: 55.756,
+        full_name: "Moscow",
+        country: "Russia",
+        variants: 2,
+        sources: ["https://www.youtube.com/watch?v=H-hlwwWk1gs", "https://www.youtube.com/watch?v=H-hlwwWk1gs"]
     },
     {
         city_name: "Mumbai",

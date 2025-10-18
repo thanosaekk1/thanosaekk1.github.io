@@ -168,7 +168,7 @@ header {
 /*RESULTS POPUP*/
 #results_popup {
     display: none;
-    position: absolute;
+    position: fixed;
     z-index: 1000;
     top: 0px;
     left: 0px;
@@ -190,11 +190,4 @@ header {
     font-size: 30px;
     font-weight: bold;
     cursor: pointer;
-}
-#result_stat {
-    display: inline-block;
-}
-#max_points {
-    display: inline-block;
-    color: gray;
 }

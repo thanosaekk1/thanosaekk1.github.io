@@ -322,7 +322,7 @@ function loadGame() { //activated from loading the window
 
 function resultsScreen() {
     document.getElementById("results_popup").style.display = "block";
-    document.getElementById("result_stat").innerHTML = "Final Score: " + score;
+    document.getElementById("result_stat").innerHTML = "Final Score: " + score + "/5000";
     let detailedResults = "";
     for (let i=0; i<5; i++) {
         detailedResults += cities[parseFloat(getCookieValue("line" + i + "dest"))].full_name
