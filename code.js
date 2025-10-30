@@ -25,7 +25,8 @@ let sound_num = 0;
 for (let i=0; i<cities.length; i++) {
     sound_num += cities[i].variants;
 }
-console.log(sound_num);
+console.log(city_num + " cities total");
+console.log(sound_num + " sounds total");
 
 const playButton = document.querySelector('#play_button');
 
@@ -239,7 +240,7 @@ function nextRound() {
             }
         }
         variant = Math.floor(Math.random()*cities[rolled_city].variants) + 1;
-        console.log(cities[rolled_city].city_name + variant); //remove later
+        //console.log(cities[rolled_city].city_name + variant);
         document.getElementById("audio_source").href = cities[rolled_city].sources[variant-1];
 
         //insurance against getting the same city twice in a game
@@ -294,6 +295,11 @@ function nextRound() {
 }
 
 function loadGame() { //activated from loading the window
+    //touchscreen compatibility
+    if(window.matchMedia("(pointer: coarse)").matches) {
+        map.gestureHandling.enable();
+    } else map.gestureHandling.disable();
+
     score = parseFloat(getCookieValue("score"));
     round = parseFloat(getCookieValue("round"));
     rolled_city = parseFloat(getCookieValue("rolled_city"));
