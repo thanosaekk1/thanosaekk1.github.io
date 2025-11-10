@@ -18,6 +18,15 @@ const cities = [
         sources: ["https://www.youtube.com/watch?v=EtxCpMzu1GY", "https://www.youtube.com/watch?v=EtxCpMzu1GY"]
     },
     {
+        city_name: "Baku",
+        X: 49.832,
+        Y: 40.376,
+        full_name: "Baku",
+        country: "Azerbaijan",
+        variants: 2,
+        sources: ["https://www.youtube.com/watch?v=JRpDUQJnkVg", "https://www.youtube.com/watch?v=JRpDUQJnkVg"]
+    },
+    {
         city_name: "Bangkok",
         X: 100.494,
         Y: 13.752,
@@ -250,6 +259,24 @@ const cities = [
         country: "United States",
         variants: 1,
         sources: ["https://www.youtube.com/watch?v=Yt7wnMg6wqU"]
+    },
+    {
+        city_name: "Santiago",
+        X: -70.650,
+        Y: -33.437,
+        full_name: "Santiago",
+        country: "Chile",
+        variants: 2,
+        sources: ["https://www.youtube.com/watch?v=LKxpqHnjKVc", "https://www.youtube.com/watch?v=LKxpqHnjKVc"]
+    },
+    {
+        city_name: "Seoul",
+        X: 126.990,
+        Y: 37.560,
+        full_name: "Seoul",
+        country: "South Korea",
+        variants: 2,
+        sources: ["https://www.youtube.com/watch?v=aor2dy1Woyo", "https://www.youtube.com/watch?v=aor2dy1Woyo"]
     },
     {
         city_name: "Shanghai",
