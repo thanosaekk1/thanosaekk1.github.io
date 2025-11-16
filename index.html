@@ -1,95 +1,19 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>EchoLocate: Guess the City by Sound</title>
-    <link rel="icon" type="image/x-icon" href="/assets/favico.png">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--social media icons-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Guess the City by Sound"/>
-    <meta property="og:description" content="You are given five 30-second clips from cities around the world. Your task is to guess where the sound is from as best you can, and earn up to 1000 points every round depending on how close your guess was."/>
-    <meta property="og:image" content="/assets/banner_image.png"/>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""/>
+<style>
+body {
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Viggen_%2852526298757%29.jpg/2560px-Viggen_%2852526298757%29.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 1920px 1280px;
+    }
+</style>
 </head>
+
 <body>
 
-<header>
-    <div class="header_wrapper">
-        <div class="logo_div">
-            <image id="game_logo" src="assets/logo.png"></image>
-        </div>
-        <div class="info_div">
-            <p id="game_title"><b>EchoLocate</b></p>
-            <p id="game_desc">In this game, you are given five 30-second clips from cities around the world. Your task is to guess where the sound is from as best you can, and earn up to 1000 points every round depending on how close your guess was.</p>
-        </div>
-        <div class="extras_div">
-            <p id="highscore">Weekly Highscore: 0</p>
-            <div class="social_icons">
-                <a href="mailto:&#x65;&#x63;&#x68;&#x6F;&#x6C;&#x6F;&#x63;&#x61;&#x74;&#x65;&#x64;&#x65;&#x76;&#x40;&#x67;&#x6D;&#x61;&#x69;&#x6C;&#x2E;&#x63;&#x6F;&#x6D;"><image id="contact_me" src="assets/contact.png" title="Have any feedback or bugs?
-Is a sound misleading for the city it represents?
-Do you want sound from a video of yours taken down?
-Or uploaded?
-Shoot me a message!"></image></a>
-                <a href="https://www.instagram.com/echolocate_official/" class="fa fa-instagram fa-2x"></a>
-            </div>
-        </div>
-    </div>
-</header>
-
-<div class="game_info">
-    <div id="score_num">Score: 0 — Round: 0/5</div>
-</div>
-
-<div class="main_wrapper">
-    <div class="audio_player">
-        <div class="audio-results-wrapper">
-            <div id="waveform"></div>
-            <div id="result_overlay">
-                <h2 id="revealed_city_name">City Name</h2>
-                <br><br>
-                <h3 id="round_score">Score Gained</h3>
-                <br><br>
-                <a href="https://www.google.com" id="audio_source">Source</a>
-            </div>
-        </div>
-        <div id="audio_control">
-            <input id="play_button" type="image" src="assets/play_sound.png"></input>
-            <image id="volume_icon" src="assets/volume_icon.png"></image>
-            <input type="range" class="slider" id="volume-slider"></input>
-        </div>
-    </div>
-
-    <div class="map_container">
-        <div id="map"></div>
-        <div id="map_buttons">
-            <button id="guess_button" class="button_style" onclick="confirmGuess()">Confirm Guess</button>
-            <button id="next_round_button" class="button_style" onclick="nextRoundButton()">Next Round</button>
-            <button id="new_game_button" class="button_style" onclick="newGame()">New Game</button>
-        </div>
-    </div>
-</div>
-
-<div id="results_popup">
-    <div id="results_content">
-        <div id="results_header">
-            <span id="close_btn" onclick="hideResults()">&times;</span>
-            <h1 id="result_stat">title</h1>
-        </div>
-        <p id="detailed_results">hello there</p>
-    </div>
-</div>
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""></script>
-
-<script src="https://unpkg.com/wavesurfer.js@7"></script>
-<link rel="stylesheet" href="//unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css">
-<script src="//unpkg.com/leaflet-gesture-handling"></script>
-
-<script src="cities.js"></script>
-<script src="code.js"></script>
+<h1>90% of gamblers stop before they hit it big</h1>
 
 </body>
 </html>

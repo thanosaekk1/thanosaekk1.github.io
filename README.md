@@ -1,2 +1,1 @@
-# echolocate
-A browser game.
+Howdy
