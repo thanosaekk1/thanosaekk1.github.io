@@ -38,11 +38,11 @@ const deck_descriptions = [
     "Πολιτισμένος:<br>Προτού κάνετε άλλες ερωτήσεις, βρείτε ένα έργο τέχνης (μπορεί να είναι γλυπτό, πίνακας ή street art (όχι ταγκιές!)) και θαυμάστε το για 5 λεπτά. Στείλτε μια φωτογραφία στην άλλη ομάδα.",
     "Δειλός:<br>Η ομάδα που κρύβεται επιλέγει μια 'σωστή' κατεύθυνση της πυξίδας που θα οδηγούσε τους κυνηγούς σε εκείνη, και οι κυνηγοί δε μπορούν να πάνε προς τα εκεί για τα επόμενα 15 λεπτά.<br>(π.χ. Είσαι ΒΔ των κυνηγών, διαλέγεις Β και οι κυνηγοί πρέπει να μείνουν πιο Νότια από εκεί που ξεκίνησαν για 15').",
     "Αγύμναστος:<br>Για τον υπόλοιπο γύρο, πρέπει να ξεκουράζεστε σε κάθε ελεύθερο παγκάκι (εκτός στάσεων) εντός του οπτικού σας πεδίου για 1 λεπτό. Αν τα παγκάκια είναι σε σειρά, σταματήστε μόνο σε 1.",
-    "Ξεχασιάρης:<br>Η ομάδα που κρύβεται διαλέγει 2 ερωτήσεις τις οποίες δε μπορεί να ερωτηθεί για τον υπόλοιπο γύρο.",
+    "Ξεχασιάρης:<br>Η ομάδα που κρύβεται διαλέγει 2 ερωτήσεις τις οποίες δε μπορεί να ερωτηθεί για τον υπόλοιπο γύρο και τις στέλνει στους κυνηγούς.",
     "Θανατοποινίτης:<br>Προτού κάνετε άλλες ερωτήσεις, νικήστε την ομάδα που κρύβεται μαντεύωντας μια λέξη έως 7 γραμμάτων που διάλεξαν σε κρεμάλα με 7 σωματικά μέλη/λάθη. Αν χάσετε, μπορείτε να επαναλάβετε κάθε 10 λεπτά.",
     "Λουδίτης:<br>Για τα επόμενα 30 λεπτά, μπορείτε να χρησιμοποιείτε το κινητό μόνο για να επικοινωνείτε με την ομάδα που κρύβεται. Η χρήση Maps/internet απαγορεύεται.",
     "Ζαλισμένος:<br>Για τον υπόλοιπο γύρο, δεν επιτρέπεται να κάνετε ερωτήσεις ενώ βρίσκεστε πάνω σε οποιοδήποτε μέσο μεταφοράς.",
-    "Προβλέψιμος:<br>Για τον υπόλοιπο γύρο, η ομάδα που κρύβεται μπορεί να μαντέψει ποια θα είναι η επόμενη ερώτηση που θα δεχθεί. Αν τη πετύχει, τραβάει 3 κάρτες αντί για 1.",
+    "Προβλέψιμος:<br>Για τον υπόλοιπο γύρο, η ομάδα που κρύβεται μπορεί να μαντέυει ποια θα είναι η επόμενη ερώτηση που θα δεχθεί. Αν τη πετύχει, τραβάει 3 κάρτες αντί για 1.",
     "5min Bonus:<br>Αν κρατάς ακόμα αυτή τη κάρτα στο τέλος του γύρου, πρόσθεσε 5 λεπτά στο τελικό σου χρόνο.",
     "5min Bonus:<br>Αν κρατάς ακόμα αυτή τη κάρτα στο τέλος του γύρου, πρόσθεσε 5 λεπτά στο τελικό σου χρόνο.",
     "5min Bonus:<br>Αν κρατάς ακόμα αυτή τη κάρτα στο τέλος του γύρου, πρόσθεσε 5 λεπτά στο τελικό σου χρόνο.",
@@ -59,14 +59,14 @@ const deck_descriptions = [
 ];
 
 function setCookie(name, value, days = 6) {
-  const d = new Date();
-  d.setTime(d.getTime() + (days*24*60*60*1000));
-  document.cookie = `${name}=${encodeURIComponent(value)};expires=${d.toUTCString()};path=/`;
+    const d = new Date();
+    d.setTime(d.getTime() + (days*24*60*60*1000));
+    document.cookie = `${name}=${encodeURIComponent(value)};expires=${d.toUTCString()};path=/`;
 }
 
 function getCookie(name) {
-  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-  return match ? decodeURIComponent(match[2]) : null;
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? decodeURIComponent(match[2]) : null;
 }
 
 let savedHand = getCookie("hand");
@@ -100,14 +100,14 @@ function renderHand() {
 }
 
 function drawCard() {
-const emptyIndex = hand.findIndex(c => c === null);
-if (emptyIndex === -1) return;
+    const emptyIndex = hand.findIndex(c => c === null);
+    if (emptyIndex === -1) return;
 
-const randomCard = deck[Math.floor(Math.random() * deck.length)];
-hand[emptyIndex] = randomCard;
+    const randomCard = deck[Math.floor(Math.random() * deck.length)];
+    hand[emptyIndex] = randomCard;
 
-updateSelectedDesc(selectedIndex);
-renderHand();
+    updateSelectedDesc(selectedIndex);
+    renderHand();
 }
 
 function useCard() {
@@ -136,15 +136,15 @@ function saveQuestions() {
 }
 
 function loadQuestions() {
-  const saved = getCookie("questions");
-  if (!saved) return;
+    const saved = getCookie("questions");
+    if (!saved) return;
 
-  const values = JSON.parse(saved);
-  const boxes = document.querySelectorAll('#questions input[type="checkbox"]');
+    const values = JSON.parse(saved);
+    const boxes = document.querySelectorAll('#questions input[type="checkbox"]');
 
-  boxes.forEach((cb, i) => {
-    cb.checked = values[i] || false;
-  });
+    boxes.forEach((cb, i) => {
+        cb.checked = values[i] || false;
+    });
 }
 
 document.querySelectorAll('#questions input[type="checkbox"]').forEach(cb => cb.addEventListener("change", saveQuestions));
@@ -158,115 +158,115 @@ let mapInitialized = false;
 let groupA, groupB;
 
 function initMap() {
-map = L.map('map').setView([37.975, 23.734], 13);
+    map = L.map('map').setView([37.975, 23.734], 12);
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; OpenStreetMap'
-}).addTo(map);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap'
+    }).addTo(map);
 
-// --- Polygon Set A ---
-groupA = L.layerGroup([
-    L.polygon(Moschato, { color: 'blue' }).bindPopup("Μοσχάτο (Πειραιάς)"),
-    L.polygon(Tavros, { color: 'blue' }).bindPopup("Ταύρος (Πειραιάς)"),
-    L.polygon(Piraeus, { color: 'blue' }).bindPopup("Πειραιάς (Πειραιάς)"),
-    L.polygon(Keratsini, { color: 'blue' }).bindPopup("Κερατσίνι (Πειραιάς)"),
-    L.polygon(Drapetsona, { color: 'blue' }).bindPopup("Δραπετσώνα (Πειραιάς)"),
-    L.polygon(Korydallos, { color: 'blue' }).bindPopup("Κορυδαλλός (Πειραιάς)"),
-    L.polygon(Nikaia, { color: 'blue' }).bindPopup("Νίκαια (Πειραιάς)"),
-    L.polygon(Renti, { color: 'blue' }).bindPopup("Ρέντη (Πειραιάς)"),
+    // --- Polygon Set A ---
+    groupA = L.layerGroup([
+        L.polygon(Moschato, { color: 'blue' }).bindPopup("Μοσχάτο (Πειραιάς)"),
+        L.polygon(Tavros, { color: 'blue' }).bindPopup("Ταύρος (Πειραιάς)"),
+        L.polygon(Piraeus, { color: 'blue' }).bindPopup("Πειραιάς (Πειραιάς)"),
+        L.polygon(Keratsini, { color: 'blue' }).bindPopup("Κερατσίνι (Πειραιάς)"),
+        L.polygon(Drapetsona, { color: 'blue' }).bindPopup("Δραπετσώνα (Πειραιάς)"),
+        L.polygon(Korydallos, { color: 'blue' }).bindPopup("Κορυδαλλός (Πειραιάς)"),
+        L.polygon(Nikaia, { color: 'blue' }).bindPopup("Νίκαια (Πειραιάς)"),
+        L.polygon(Renti, { color: 'blue' }).bindPopup("Ρέντη (Πειραιάς)"),
 
-    L.polygon(Athens, { color: 'yellow' }).bindPopup("Αθηνών (Κεντρικός Τομέας)"),
-    L.polygon(Byron, { color: 'yellow' }).bindPopup("Βύρωνας (Κεντρικός Τομέας)"),
-    L.polygon(Galatsi, { color: 'yellow' }).bindPopup("Γαλάτσι (Κεντρικός Τομέας)"),
-    L.polygon(Dafni1, { color: 'yellow' }).bindPopup("Δάφνη (Κεντρικός Τομέας)"),
-    L.polygon(Dafni2, { color: 'yellow' }).bindPopup("Δάφνη (Κεντρικός Τομέας)"),
-    L.polygon(YmittosM, { color: 'yellow' }).bindPopup("Υμηττός (Κεντρικός Τομέας)"),
-    L.polygon(Zografou, { color: 'yellow' }).bindPopup("Ζωγράφου (Κεντρικός Τομέας)"),
-    L.polygon(Helioupoli, { color: 'yellow' }).bindPopup("Ηλιούπολη (Κεντρικός Τομέας)"),
-    L.polygon(Kaisariani, { color: 'yellow' }).bindPopup("Καισαριανή (Κεντρικός Τομέας)"),
-    L.polygon(Filadelfeia, { color: 'yellow' }).bindPopup("Φιλαδέλφεια (Κεντρικός Τομέας)"),
-    L.polygon(Chalkidona, { color: 'yellow' }).bindPopup("Χαλκηδόνα (Κεντρικός Τομέας)"),
+        L.polygon(Athens, { color: 'yellow' }).bindPopup("Αθηνών (Κεντρικός Τομέας)"),
+        L.polygon(Byron, { color: 'yellow' }).bindPopup("Βύρωνας (Κεντρικός Τομέας)"),
+        L.polygon(Galatsi, { color: 'yellow' }).bindPopup("Γαλάτσι (Κεντρικός Τομέας)"),
+        L.polygon(Dafni1, { color: 'yellow' }).bindPopup("Δάφνη (Κεντρικός Τομέας)"),
+        L.polygon(Dafni2, { color: 'yellow' }).bindPopup("Δάφνη (Κεντρικός Τομέας)"),
+        L.polygon(YmittosM, { color: 'yellow' }).bindPopup("Υμηττός (Κεντρικός Τομέας)"),
+        L.polygon(Zografou, { color: 'yellow' }).bindPopup("Ζωγράφου (Κεντρικός Τομέας)"),
+        L.polygon(Helioupoli, { color: 'yellow' }).bindPopup("Ηλιούπολη (Κεντρικός Τομέας)"),
+        L.polygon(Kaisariani, { color: 'yellow' }).bindPopup("Καισαριανή (Κεντρικός Τομέας)"),
+        L.polygon(Filadelfeia, { color: 'yellow' }).bindPopup("Φιλαδέλφεια (Κεντρικός Τομέας)"),
+        L.polygon(Chalkidona, { color: 'yellow' }).bindPopup("Χαλκηδόνα (Κεντρικός Τομέας)"),
 
-    L.polygon(Marousi, { color: 'green' }).bindPopup("Μαρούσι (Βόρειος Τομέας)"),
-    L.polygon(AgiaParaskevi, { color: 'green' }).bindPopup("Αγία Παρασκευή (Βόρειος Τομέας)"),
-    L.polygon(Vrilissia, { color: 'green' }).bindPopup("Βριλήσσια (Βόρειος Τομέας)"),
-    L.polygon(Irakleio, { color: 'green' }).bindPopup("Ηράκλειο (Βόρειος Τομέας)"),
-    L.polygon(Kifissia, { color: 'green' }).bindPopup("Κηφισσιά (Βόρειος Τομέας)"),
-    L.polygon(Pefki, { color: 'green' }).bindPopup("Πεύκη (Βόρειος Τομέας)"),
-    L.polygon(Likovrisi, { color: 'green' }).bindPopup("Λυκόβρυση (Βόρειος Τομέας)"),
-    L.polygon(Metamorfosi, { color: 'green' }).bindPopup("Μεταμόρφωση (Βόρειος Τομέας)"),
-    L.polygon(NeaIonia, { color: 'green' }).bindPopup("Νέα Ιωνία (Βόρειος Τομέας)"),
-    L.polygon(Holargos, { color: 'green' }).bindPopup("Χολαργός (Βόρειος Τομέας)"),
-    L.polygon(Papagou, { color: 'green' }).bindPopup("Παπάγου (Βόρειος Τομέας)"),
-    L.polygon(Melissia, { color: 'green' }).bindPopup("Μελίσσια (Βόρειος Τομέας)"),
-    L.polygon(Psychiko, { color: 'green' }).bindPopup("Παλαιό Ψυχικό (Βόρειος Τομέας)"),
-    L.polygon(NeoPsychiko, { color: 'green' }).bindPopup("Νέο Ψυχικό (Βόρειος Τομέας)"),
-    L.polygon(Filothei, { color: 'green' }).bindPopup("Φιλοθέη (Βόρειος Τομέας)"),
-    L.polygon(Halandri, { color: 'green' }).bindPopup("Χαλάνδρι (Βόρειος Τομέας)"),
+        L.polygon(Marousi, { color: 'green' }).bindPopup("Μαρούσι (Βόρειος Τομέας)"),
+        L.polygon(AgiaParaskevi, { color: 'green' }).bindPopup("Αγία Παρασκευή (Βόρειος Τομέας)"),
+        L.polygon(Vrilissia, { color: 'green' }).bindPopup("Βριλήσσια (Βόρειος Τομέας)"),
+        L.polygon(Irakleio, { color: 'green' }).bindPopup("Ηράκλειο (Βόρειος Τομέας)"),
+        L.polygon(Kifissia, { color: 'green' }).bindPopup("Κηφισσιά (Βόρειος Τομέας)"),
+        L.polygon(Pefki, { color: 'green' }).bindPopup("Πεύκη (Βόρειος Τομέας)"),
+        L.polygon(Likovrisi, { color: 'green' }).bindPopup("Λυκόβρυση (Βόρειος Τομέας)"),
+        L.polygon(Metamorfosi, { color: 'green' }).bindPopup("Μεταμόρφωση (Βόρειος Τομέας)"),
+        L.polygon(NeaIonia, { color: 'green' }).bindPopup("Νέα Ιωνία (Βόρειος Τομέας)"),
+        L.polygon(Holargos, { color: 'green' }).bindPopup("Χολαργός (Βόρειος Τομέας)"),
+        L.polygon(Papagou, { color: 'green' }).bindPopup("Παπάγου (Βόρειος Τομέας)"),
+        L.polygon(Melissia, { color: 'green' }).bindPopup("Μελίσσια (Βόρειος Τομέας)"),
+        L.polygon(Psychiko, { color: 'green' }).bindPopup("Παλαιό Ψυχικό (Βόρειος Τομέας)"),
+        L.polygon(NeoPsychiko, { color: 'green' }).bindPopup("Νέο Ψυχικό (Βόρειος Τομέας)"),
+        L.polygon(Filothei, { color: 'green' }).bindPopup("Φιλοθέη (Βόρειος Τομέας)"),
+        L.polygon(Halandri, { color: 'green' }).bindPopup("Χαλάνδρι (Βόρειος Τομέας)"),
 
-    L.polygon(Peristeri, { color: 'orange' }).bindPopup("Περιστέρι (Δυτικός Τομέας)"),
-    L.polygon(AgiaVarvara, { color: 'orange' }).bindPopup("Αγία Βαρβάρα (Δυτικός Τομέας)"),
-    L.polygon(AgioiAnargyroi, { color: 'orange' }).bindPopup("Άγιοι Ανάργυροι (Δυτικός Τομέας)"),
-    L.polygon(Kamatero, { color: 'orange' }).bindPopup("Καματερό (Δυτικός Τομέας)"),
-    L.polygon(AigaleoM, { color: 'orange' }).bindPopup("Αιγάλεω (Δυτικός Τομέας)"),
-    L.polygon(Ilion, { color: 'orange' }).bindPopup("Ίλιον (Δυτικός Τομέας)"),
-    L.polygon(Petroupoli, { color: 'orange' }).bindPopup("Πετρούπολη (Δυτικός Τομέας)"),
+        L.polygon(Peristeri, { color: 'orange' }).bindPopup("Περιστέρι (Δυτικός Τομέας)"),
+        L.polygon(AgiaVarvara, { color: 'orange' }).bindPopup("Αγία Βαρβάρα (Δυτικός Τομέας)"),
+        L.polygon(AgioiAnargyroi, { color: 'orange' }).bindPopup("Άγιοι Ανάργυροι (Δυτικός Τομέας)"),
+        L.polygon(Kamatero, { color: 'orange' }).bindPopup("Καματερό (Δυτικός Τομέας)"),
+        L.polygon(AigaleoM, { color: 'orange' }).bindPopup("Αιγάλεω (Δυτικός Τομέας)"),
+        L.polygon(Ilion, { color: 'orange' }).bindPopup("Ίλιον (Δυτικός Τομέας)"),
+        L.polygon(Petroupoli, { color: 'orange' }).bindPopup("Πετρούπολη (Δυτικός Τομέας)"),
 
-    L.polygon(Kallithea, { color: 'red' }).bindPopup("Καλλιθέα (Νότιος Τομέας)"),
-    L.polygon(AgiosDimitrios, { color: 'red' }).bindPopup("Άγιος Δημήτριος (Νότιος Τομέας)"),
-    L.polygon(NeaSmyrni, { color: 'red' }).bindPopup("Νέα Σμύρνη (Νότιος Τομέας)"),
-    L.polygon(Faliro, { color: 'red' }).bindPopup("Παλαιό Φάληρο (Νότιος Τομέας)"),
-    L.polygon(Alimos, { color: 'red' }).bindPopup("Άλιμος (Νότιος Τομέας)"),
-    L.polygon(Glyfada, { color: 'red' }).bindPopup("Γλυφάδα (Νότιος Τομέας)"),
-    L.polygon(Argyroupoli, { color: 'red' }).bindPopup("Αργυρούπολη (Νότιος Τομέας)"),
-    L.polygon(Elliniko, { color: 'red' }).bindPopup("Ελληνικό (Νότιος Τομέας)")
-]);
+        L.polygon(Kallithea, { color: 'red' }).bindPopup("Καλλιθέα (Νότιος Τομέας)"),
+        L.polygon(AgiosDimitrios, { color: 'red' }).bindPopup("Άγιος Δημήτριος (Νότιος Τομέας)"),
+        L.polygon(NeaSmyrni, { color: 'red' }).bindPopup("Νέα Σμύρνη (Νότιος Τομέας)"),
+        L.polygon(Faliro, { color: 'red' }).bindPopup("Παλαιό Φάληρο (Νότιος Τομέας)"),
+        L.polygon(Alimos, { color: 'red' }).bindPopup("Άλιμος (Νότιος Τομέας)"),
+        L.polygon(Glyfada, { color: 'red' }).bindPopup("Γλυφάδα (Νότιος Τομέας)"),
+        L.polygon(Argyroupoli, { color: 'red' }).bindPopup("Αργυρούπολη (Νότιος Τομέας)"),
+        L.polygon(Elliniko, { color: 'red' }).bindPopup("Ελληνικό (Νότιος Τομέας)")
+    ]);
 
-// --- Polygon Set B ---
-groupB = L.layerGroup([
-    L.polygon(Penteli, { color: 'red' }).bindPopup("Πλησιέστερο στη Πεντέλη"),
-    L.polygon(Ymittos, { color: 'orange' }).bindPopup("Πλησιέστερο στον Υμηττό"),
-    L.polygon(Aigaleo, { color: 'yellow' }).bindPopup("Πλησιέστερο στο Αιγάλεω")
-]);
+    // --- Polygon Set B ---
+    groupB = L.layerGroup([
+        L.polygon(Penteli, { color: 'red' }).bindPopup("Πλησιέστερο στη Πεντέλη"),
+        L.polygon(Ymittos, { color: 'orange' }).bindPopup("Πλησιέστερο στον Υμηττό"),
+        L.polygon(Aigaleo, { color: 'yellow' }).bindPopup("Πλησιέστερο στο Αιγάλεω")
+    ]);
 
-groupA.addTo(map); // default
-mapInitialized = true;
+    groupA.addTo(map); // default
+    mapInitialized = true;
 }
 
 function showGroup(group) {
-map.removeLayer(groupA);
-map.removeLayer(groupB);
+    map.removeLayer(groupA);
+    map.removeLayer(groupB);
 
-document.getElementById('btnA').classList.remove('active');
-document.getElementById('btnB').classList.remove('active');
+    document.getElementById('btnA').classList.remove('active');
+    document.getElementById('btnB').classList.remove('active');
 
-if (group === 'A') {
-    groupA.addTo(map);
-    document.getElementById('btnA').classList.add('active');
-} else {
-    groupB.addTo(map);
-    document.getElementById('btnB').classList.add('active');
-}
+    if (group === 'A') {
+        groupA.addTo(map);
+        document.getElementById('btnA').classList.add('active');
+    } else {
+        groupB.addTo(map);
+        document.getElementById('btnB').classList.add('active');
+    }
 }
 
 function openTab(evt, tabId) {
-document.querySelectorAll('.content')
-    .forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.content')
+        .forEach(c => c.classList.remove('active'));
 
-document.querySelectorAll('.tab')
-    .forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab')
+        .forEach(t => t.classList.remove('active'));
 
-document.getElementById(tabId).classList.add('active');
-evt.currentTarget.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+    evt.currentTarget.classList.add('active');
 
-if (tabId === 'tab3') {
-    if (!mapInitialized) {
-    setTimeout(initMap, 0);
-    } else {
-    setTimeout(() => map.invalidateSize(), 0);
+    if (tabId === 'tab3') {
+        if (!mapInitialized) {
+        setTimeout(initMap, 0);
+        } else {
+        setTimeout(() => map.invalidateSize(), 0);
+        }
     }
-}
 }
 
 window.onload = () => {
