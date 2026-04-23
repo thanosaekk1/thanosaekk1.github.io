@@ -1,19 +1,225 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-body {
-  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Viggen_%2852526298757%29.jpg/2560px-Viggen_%2852526298757%29.jpg);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 1920px 1280px;
-    }
-</style>
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hide & Seek - Athens</title>
 
+  <!-- LEAFLET -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background-color: #0f172a;
+      color: white;
+    }
+
+    .app {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .tabs {
+      display: flex;
+      background-color: #1e293b;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 16px;
+      text-align: center;
+      background: none;
+      border: none;
+      color: #cbd5f5;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      background-color: #3b82f6;
+      color: white;
+    }
+
+    .content {
+      display: none;
+      flex: 1;
+      padding: 20px;
+    }
+
+    .content.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #tab1 { background-color: #0f172a; }
+    #tab2 { background-color: #1e3a8a; }
+    #tab3 { background-color: #065f46; }
+
+    #hand {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .card {
+      width: 70px;
+      height: 100px;
+      border-radius: 8px;
+      background: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 2px solid transparent;
+      font-size: 12px;
+      text-align: center;
+      padding: 5px;
+    }
+
+    .card.selected {
+      border: 2px solid #3b82f6;
+      background: #334155;
+    }
+
+    .cardsBtn {
+      background: #60a5c0;
+    }
+
+    #map {
+      flex: 1;
+      width: 100%;
+      min-height: 300px;
+      border-radius: 12px;
+    }
+
+    /* Map overlay menu */
+    .map-menu {
+      position: absolute;
+      top: 80px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .map-menu button {
+      padding: 10px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      background: white;
+      color: black;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .map-menu button.active {
+      background: #3b82f6;
+      color: white;
+    }
+  </style>
+</head>
 <body>
 
-<h1>90% of gamblers stop before they hit it big</h1>
+<div class="app">
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab active" onclick="openTab(event, 'tab1')">Ερωτηματολόγιο</button>
+    <button class="tab" onclick="openTab(event, 'tab2')">Τιμωρίες</button>
+    <button class="tab" onclick="openTab(event, 'tab3')">Χάρτης</button>
+  </div>
+
+  <!-- Content -->
+  <div id="tab1" class="content active">
+
+  <!-- ΕΡΩΤΗΣΕΙΣ -->
+  <h3>Ερωτήσεις</h3>
+
+  <div id="questions">
+    <br>
+    <h4>Σχετική</h4>
+    <label><input type="checkbox"> Είσαι στον ίδιο Τομέα της Αττικής με μένα; (Κέντρο, Βόρεια, Δυτικά, Νότια, Πειραιάς) </label><br>
+    <label><input type="checkbox"> Είσαι στον ίδιο Δήμο με μένα; </label><br>
+    <label><input type="checkbox"> Η κοντινότερη κορυφή σού είναι ίδια με τη δικιά μου; </label><br>
+    <label><input type="checkbox"> Είσαι πιο κοντά ή πιο μακριά από τον Σαρωνικό απ'ότι εγώ; </label><br>
+    <br>
+    <h4>Ραντάρ</h4>
+    <label><input type="checkbox"> Είσαι μέσα σε απόσταση 100m από μένα; </label><br>
+    <label><input type="checkbox"> Είσαι μέσα σε απόσταση 250m από μένα; </label><br>
+    <label><input type="checkbox"> Είσαι μέσα σε απόσταση 500m από μένα; </label><br>
+    <label><input type="checkbox"> Είσαι μέσα σε απόσταση 1km από μένα; </label><br>
+    <label><input type="checkbox"> Είσαι μέσα σε απόσταση 3km από μένα; </label><br>
+    <label><input type="checkbox"> Είσαι μέσα σε απόσταση 5km από μένα; </label><br>
+    <br>
+    <h4>Θερμόμετρο</h4>
+    <label><input type="checkbox"> Θα μετακινηθώ 100m, είμαι πιο κοντά ή πιο μακριά απ'ότι πριν; </label><br>
+    <label><input type="checkbox"> Θα μετακινηθώ 250m, είμαι πιο κοντά ή πιο μακριά απ'ότι πριν; </label><br>
+    <label><input type="checkbox"> Θα μετακινηθώ 1km, είμαι πιο κοντά ή πιο μακριά απ'ότι πριν; </label><br>
+    <br>
+    <h4>Φωτογραφία</h4>
+    <label><input type="checkbox"> Στείλε τη κοντινότερη στάση λεωφορείου (πρέπει να είναι όλη εντός του πλάνου) </label><br>
+    <label><input type="checkbox"> Στείλε το κοντινότερο χώρο πρασίνου (ό,τι είναι πράσινο στο Maps) </label><br>
+    <label><input type="checkbox"> Στείλε 3 κτίρια (να φαίνεται όλο το πλάτος τους) </label><br>
+    <label><input type="checkbox"> Στείλε το υψηλότερο ορατό σημείο από τη κρυψώνα σου </label><br>
+    <br>
+    <h4>Ακριβείας (μόνο για Endgame)</h4>
+    <label><input type="checkbox"> Ποιος είναι ο κοντινότερος σε σένα κινηματογράφος; </label><br>
+    <label><input type="checkbox"> Ποιο είναι το κοντινότερο σε σένα θέατρο; </label><br>
+    <label><input type="checkbox"> Ποια είναι η κοντινότερη σε σένα βιβλιοθήκη; </label><br>
+    <label><input type="checkbox"> Ποιο είναι το κοντινότερο σε σένα γήπεδο; </label><br>
+    <label><input type="checkbox"> Ποιο είναι το κοντινότερο σε σένα il Toto; </label><br>
+    <label><input type="checkbox"> Ποιο είναι το πρώτο γράμμα της οδού στην οποία κρύβεσαι; </label><br>
+    <label><input type="checkbox"> Πόσα λεπτά περπατώντας απέχεις από τη κοντινότερη στάση μετρό; </label><br>
+  </div>
+
+  </div>
+
+  <!-- ΤΙΜΩΡΙΕΣ -->
+  <div id="tab2" class="content">
+
+  <h3>Διαθέσιμες Τιμωρίες</h3>
+
+  <div id="hand"></div>
+
+  <div style="margin-top:15px;">
+    <button class="cardsBtn" onclick="drawCard()">Τράβα κάρτα</button>
+    <button class="cardsBtn" onclick="useCard()">Χρησιμοποίησε</button>
+  </div>
+
+  <br>
+  <div id="card_desc"></div>
+  <div id="chronicle"></div>
+
+  </div>
+
+  <!-- ΧΑΡΤΗΣ -->
+  <div id="tab3" class="content" style="position: relative;">
+    <h2>Map</h2>
+
+    <!-- Menu -->
+    <div class="map-menu">
+      <button onclick="showGroup('A')" id="btnA" class="active">Δήμοι & Τομείς</button>
+      <button onclick="showGroup('B')" id="btnB">Κορυφές</button>
+    </div>
+
+    <!-- Map -->
+    <div id="map"></div>
+  </div>
+
+</div>
+
+<script src="nearest_peaks.js"></script>
+<script src="municipalities.js"></script>
+
+<script src="gamecode.js"></script>
 
 </body>
 </html>
