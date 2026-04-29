@@ -28,17 +28,27 @@
     .tabs {
       display: flex;
       background-color: #1e293b;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Firefox */
+    }
+    
+    .tabs::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
     }
 
     .tab {
-      flex: 1;
-      padding: 16px;
+      flex: 0 0 auto;   /* prevent shrinking */
+      padding: 16px 20px;
       text-align: center;
       background: none;
       border: none;
       color: #cbd5f5;
       font-size: 16px;
       cursor: pointer;
+      min-width: 120px; /* optional: makes them easier to tap */
     }
 
     .tab.active {
