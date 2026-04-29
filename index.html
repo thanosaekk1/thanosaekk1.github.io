@@ -28,27 +28,17 @@
     .tabs {
       display: flex;
       background-color: #1e293b;
-      overflow-x: auto;
-      overflow-y: hidden;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; /* Firefox */
-    }
-    
-    .tabs::-webkit-scrollbar {
-      display: none; /* Chrome/Safari */
     }
 
     .tab {
-      flex: 0 0 auto;   /* prevent shrinking */
-      padding: 16px 20px;
+      flex: 1;
+      padding: 16px;
       text-align: center;
       background: none;
       border: none;
       color: #cbd5f5;
       font-size: 16px;
       cursor: pointer;
-      min-width: 120px; /* optional: makes them easier to tap */
     }
 
     .tab.active {
@@ -146,10 +136,10 @@
 
   <!-- Tabs -->
   <div class="tabs">
-    <button class="tab active" onclick="openTab(event, 'tab1')">Ερωτηματολόγιο</button>
+    <button class="tab active" onclick="openTab(event, 'tab1')">Ερωτήσεις</button>
     <button class="tab" onclick="openTab(event, 'tab2')">Τιμωρίες</button>
     <button class="tab" onclick="openTab(event, 'tab3')">Χάρτης</button>
-    <button class="tab" onclick="openTab(event, 'tab4')">Πληροφορίες</button>
+    <button class="tab" onclick="openTab(event, 'tab4')">Info</button>
   </div>
 
   <!-- Content -->
