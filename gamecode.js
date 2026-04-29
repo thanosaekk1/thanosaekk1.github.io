@@ -73,6 +73,11 @@ let savedHand = getCookie("hand");
 let hand = savedHand ? JSON.parse(savedHand) : [null, null, null, null, null];
 let selectedIndex = null;
 
+let savedCardsUsed = getCookie("cardsUsed");
+let cards_used = savedCardsUsed ? JSON.parse(savedCardsUsed) : [];
+
+let resetTimesPressed = 0;
+
 function renderHand() {
     const handDiv = document.getElementById("hand");
     handDiv.innerHTML = "";
@@ -93,6 +98,7 @@ function renderHand() {
         handDiv.appendChild(div);
     });
     setCookie("hand", JSON.stringify(hand));
+    setCookie("cardsUsed", JSON.stringify(cards_used));
     //const savedChronicle = getCookie("chronicle");
     //if(savedChronicle) {
     //    document.getElementById("chronicle").innerHTML = savedChronicle;
@@ -103,10 +109,18 @@ function drawCard() {
     const emptyIndex = hand.findIndex(c => c === null);
     if (emptyIndex === -1) return;
 
-    const randomCard = deck[Math.floor(Math.random() * deck.length)];
+    let randomCardIndex = Math.floor(Math.random() * deck.length);
+    while (cards_used.includes(randomCardIndex)) {
+        if (cards_used.length === deck.length) return;
+        randomCardIndex = Math.floor(Math.random() * deck.length);
+    }
+    const randomCard = deck[randomCardIndex];
     hand[emptyIndex] = randomCard;
 
+    cards_used.push(randomCardIndex);
+
     updateSelectedDesc(selectedIndex);
+    console.log(cards_used);
     renderHand();
 }
 
@@ -145,6 +159,38 @@ function loadQuestions() {
     boxes.forEach((cb, i) => {
         cb.checked = values[i] || false;
     });
+}
+
+function resetButton() {
+    resetTimesPressed ++;
+    if (resetTimesPressed > 2) {
+
+        // Reset questions
+        document.querySelectorAll('#questions input[type="checkbox"]')
+            .forEach(cb => cb.checked = false);
+
+        // Reset hand
+        hand = [null, null, null, null, null];
+        selectedIndex = null;
+
+        // Reset used cards
+        cards_used = [];
+
+        // Clear cookies
+        setCookie("hand", "", -1);
+        setCookie("cardsUsed", "", -1);
+        setCookie("questions", "", -1);
+
+        // Optional: clear chronicle if you use it
+        const chronicle = document.getElementById("chronicle");
+        if (chronicle) chronicle.innerHTML = "";
+
+        // Re-render UI
+        renderHand();
+
+        // Reset counter (optional but cleaner)
+        resetTimesPressed = 0;
+    }
 }
 
 document.querySelectorAll('#questions input[type="checkbox"]').forEach(cb => cb.addEventListener("change", saveQuestions));
